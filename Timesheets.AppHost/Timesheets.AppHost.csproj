@@ -12,13 +12,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\TimeAdder.Api\TimeAdder.Api.csproj" />
+    <ProjectReference Include="..\TimeRecorder\TimeRecorder.csproj" />
     <ProjectReference Include="..\Timesheets.ApiService\Timesheets.ApiService.csproj" />
     <ProjectReference Include="..\Timesheets.Web\Timesheets.Web.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Aspire.Hosting.AppHost" Version="9.0.0" />
-    <PackageReference Include="Aspire.Hosting.Redis" Version="9.0.0" />
+    <PackageReference Include="Aspire.Hosting.AppHost" Version="9.1.0" />
+    <PackageReference Include="Aspire.Hosting.RabbitMQ" Version="9.1.0" />
+    <PackageReference Include="Aspire.Hosting.Redis" Version="9.1.0" />
   </ItemGroup>
 
 </Project>
