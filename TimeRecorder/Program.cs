@@ -26,10 +26,14 @@ channel.QueueDeclare(
 var consumer = new EventingBasicConsumer(channel);
 consumer.Received += ProcessMessageAsync;
 
-await host.RunAsync();
+channel.BasicConsume(queue: queue, autoAck: true, consumer: consumer);
+
+Console.ReadLine();
+
+//await host.RunAsync();
 
 void ProcessMessageAsync(object? sender, BasicDeliverEventArgs args)
 {
     string messagetext = Encoding.UTF8.GetString(args.Body.ToArray());
-    Console.WriteLine("The message is: {text}", messagetext);
+    Console.WriteLine("The message is: " + messagetext);
 }
