@@ -1,5 +1,5 @@
-﻿using TimeAdder.Api.Contracts.Requests;
-using TimeRecorder.Contracts.Messages;
+﻿using TimeAdder.Api.Contracts.Messages;
+using TimeAdder.Api.Contracts.Requests;
 
 namespace TimeAdder.Api.ModelConverters;
 

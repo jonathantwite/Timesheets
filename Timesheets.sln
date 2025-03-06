@@ -12,7 +12,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Timesheets.Web", "Timesheet
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Timesheets.Tests", "Timesheets.Tests\Timesheets.Tests.csproj", "{A85827EE-5DDC-D8B6-8B4A-398230074E6D}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Solution Items", "_Solution Items", "{8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}"
 	ProjectSection(SolutionItems) = preProject
 		.gitattributes = .gitattributes
 		.gitignore = .gitignore
@@ -36,6 +36,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeRecorder.Contracts", "TimeRecorder.Contracts\TimeRecorder.Contracts.csproj", "{547E723F-271A-4E91-9A3F-A12B4B12DAA8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Messaging.Shared", "Messaging.Shared\Messaging.Shared.csproj", "{86BAA711-FA37-4B84-889C-DB99452EB91A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TimeAggregator", "TimeAggregator", "{AE1AA871-96C2-408D-A656-03515355E6CA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeAggregator", "TimeAggregator\TimeAggregator.csproj", "{6EF15C29-1336-4D67-AB7A-B40C85A673CE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -83,6 +87,10 @@ Global
 		{86BAA711-FA37-4B84-889C-DB99452EB91A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{86BAA711-FA37-4B84-889C-DB99452EB91A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{86BAA711-FA37-4B84-889C-DB99452EB91A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6EF15C29-1336-4D67-AB7A-B40C85A673CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EF15C29-1336-4D67-AB7A-B40C85A673CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EF15C29-1336-4D67-AB7A-B40C85A673CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EF15C29-1336-4D67-AB7A-B40C85A673CE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -93,6 +101,7 @@ Global
 		{AC5ADD5A-B5C3-4927-908E-66BA0B680DB8} = {B1A82F7A-7DF4-423F-89CB-5001EA213EBC}
 		{547E723F-271A-4E91-9A3F-A12B4B12DAA8} = {B1A82F7A-7DF4-423F-89CB-5001EA213EBC}
 		{86BAA711-FA37-4B84-889C-DB99452EB91A} = {68370809-4D66-4A2F-8A2B-F4C8E4009B6A}
+		{6EF15C29-1336-4D67-AB7A-B40C85A673CE} = {AE1AA871-96C2-408D-A656-03515355E6CA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BEF35EDE-1F1B-4955-979A-651F360D9657}

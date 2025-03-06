@@ -1,7 +1,7 @@
 ﻿using Messaging.Shared.Constants;
+using TimeAdder.Api.Contracts.Messages;
 using TimeAdder.Api.Contracts.Requests;
 using TimeAdder.Api.ModelConverters;
-using TimeRecorder.Contracts.Messages;
 
 namespace TimeAdder.Api.Services;
 
@@ -12,6 +12,6 @@ public class TimeRequestService(IMessagingService messagingService) : ITimeReque
 
     public void ProcessNewTimeRequest(int userId, TimeRequest request)
     {
-        _messagingService.SendMessage<RecordTimeMessage>(MessagingConstants.TimeRecorderQueueName, request.AsRecordTimeMessage(userId));
+        _messagingService.SendMessage<RecordTimeMessage>(MessagingConstants.NewTimeRecordedExchange, request.AsRecordTimeMessage(userId));
     }
 }

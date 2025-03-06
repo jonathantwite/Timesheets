@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TimeAdder.Api\TimeAdder.Api.csproj" />
+    <ProjectReference Include="..\TimeAggregator\TimeAggregator.csproj" />
     <ProjectReference Include="..\TimeRecorder\TimeRecorder.csproj" />
     <ProjectReference Include="..\Timesheets.ApiService\Timesheets.ApiService.csproj" />
     <ProjectReference Include="..\Timesheets.Web\Timesheets.Web.csproj" />

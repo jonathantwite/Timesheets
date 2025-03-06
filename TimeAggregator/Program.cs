@@ -1,9 +1,9 @@
-﻿using Messaging.Shared.Constants;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
+using RabbitMQ.Client;
 using System.Text;
+using Messaging.Shared.Constants;
 using TimeAdder.Api.Contracts.Messages;
 
 HostApplicationBuilder builder = Host.CreateApplicationBuilder();
@@ -25,7 +25,6 @@ var consumer = new EventingBasicConsumer(channel);
 consumer.Received += ProcessMessageAsync;
 
 channel.BasicConsume(queue: queueName, autoAck: true, consumer: consumer);
-
 
 Console.ReadLine();
 
