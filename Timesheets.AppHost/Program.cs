@@ -4,6 +4,9 @@ var cache = builder.AddRedis("cache");
 
 var rabbitmq = builder.AddRabbitMQ("messaging").WithManagementPlugin();
 
+var dbServer = builder.AddSqlServer("sqlDbServer").WithLifetime(ContainerLifetime.Persistent);
+var rawTimeEntriesDb = dbServer.AddDatabase("RawTimeEntriesDb");
+
 //var apiService = builder.AddProject<Projects.Timesheets_ApiService>("apiservice");
 //
 //builder.AddProject<Projects.Timesheets_Web>("webfrontend")
@@ -15,7 +18,9 @@ var rabbitmq = builder.AddRabbitMQ("messaging").WithManagementPlugin();
 
 builder.AddProject<Projects.TimeRecorder>("timerecorder")
     .WithReference(rabbitmq)
-    .WaitFor(rabbitmq);
+    .WaitFor(rabbitmq)
+    .WithReference(dbServer)
+    .WaitFor(dbServer);
 
 builder.AddProject<Projects.TimeAggregator>("timeaggregator")
     .WithReference(rabbitmq)

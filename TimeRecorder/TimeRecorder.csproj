@@ -8,14 +8,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="zj15djxl.wey~" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Aspire.Microsoft.EntityFrameworkCore.SqlServer" Version="9.1.0" />
     <PackageReference Include="Aspire.RabbitMQ.Client" Version="9.1.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.2" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Messaging.Shared\Messaging.Shared.csproj" />
+    <ProjectReference Include="..\RawTimeEntriesDatabase\RawTimeEntriesDatabase.csproj" />
     <ProjectReference Include="..\TimeAdder.Api.Contracts\TimeAdder.Api.Contracts.csproj" />
-    <ProjectReference Include="..\TimeRecorder.Contracts\TimeRecorder.Contracts.csproj" />
   </ItemGroup>
 
   <ItemGroup>

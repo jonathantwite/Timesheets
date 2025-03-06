@@ -1,16 +1,21 @@
 ﻿using Messaging.Shared.Constants;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
+using RawTimeEntriesDatabase;
 using System.Text;
 using TimeAdder.Api.Contracts.Messages;
 
 HostApplicationBuilder builder = Host.CreateApplicationBuilder();
 builder.AddRabbitMQClient(connectionName: "messaging");
+builder.AddSqlServerDbContext<RawTimeEntriesContext>(connectionName: "RawTimeEntriesDb");
 
 using IHost host = builder.Build();
 
+var db = host.Services.GetRequiredService<RawTimeEntriesContext>();
+db.Database.Migrate();
 
 var _rabbitConnection = host.Services.GetRequiredService<IConnection>();
 
