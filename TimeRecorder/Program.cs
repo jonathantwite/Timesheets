@@ -7,10 +7,12 @@ using RabbitMQ.Client.Events;
 using RawTimeEntriesDatabase;
 using System.Text;
 using TimeAdder.Api.Contracts.Messages;
+using TimeRecorder.Services;
 
 HostApplicationBuilder builder = Host.CreateApplicationBuilder();
 builder.AddRabbitMQClient(connectionName: "messaging");
-builder.AddSqlServerDbContext<RawTimeEntriesContext>(connectionName: "RawTimeEntriesDb");
+builder.AddSqlServerDbContext<RawTimeEntriesContext>(connectionName: "sqlDbServer");
+builder.Services.AddScoped<IProcessNewTimeEntryService, ProcessNewTimeEntryService>();
 
 using IHost host = builder.Build();
 
@@ -42,4 +44,7 @@ void ProcessMessageAsync(object? sender, BasicDeliverEventArgs args)
 
     var recordTimeMessage = JsonSerializer.Deserialize<RecordTimeMessage>(messagetext);
     Console.WriteLine("The message is: " + JsonSerializer.Serialize(recordTimeMessage));
+
+    var service = host.Services.GetRequiredService<IProcessNewTimeEntryService>();
+    service.ProcessAsync(recordTimeMessage).RunSynchronously();
 }
