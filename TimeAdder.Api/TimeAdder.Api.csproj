@@ -9,7 +9,7 @@
   <ItemGroup>
     <PackageReference Include="Aspire.RabbitMQ.Client" Version="9.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.2" />
-    <PackageReference Include="Scalar.AspNetCore" Version="2.0.23" />
+    <PackageReference Include="Scalar.AspNetCore" Version="2.0.25" />
   </ItemGroup>
 
   <ItemGroup>
