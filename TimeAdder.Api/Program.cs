@@ -13,6 +13,7 @@ builder.Services.AddOpenApi();
 builder.AddRabbitMQClient(connectionName: "messaging");
 
 builder.Services.AddScoped<IMessagingService, MessagingService>();
+builder.Services.AddScoped<ITimeRequestService, TimeRequestService>();
 
 var app = builder.Build();
 

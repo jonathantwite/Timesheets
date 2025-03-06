@@ -5,6 +5,7 @@ Accept: application/json
 Content-Type: application/json
 {
   "jobId": 1,
+  "date": "2025-03-06",
   "time": "11:25"
 }
 ###

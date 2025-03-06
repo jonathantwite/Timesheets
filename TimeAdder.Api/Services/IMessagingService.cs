@@ -1,6 +1,8 @@
-﻿namespace TimeAdder.Api.Services;
+﻿using Messaging.Shared.Interfaces;
+
+namespace TimeAdder.Api.Services;
 
 public interface IMessagingService
 {
-    void SendMessage<T>(string queue, T message);
+    void SendMessage<T>(string queue, T message) where T : IMessage;
 }
