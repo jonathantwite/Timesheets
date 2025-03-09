@@ -31,3 +31,6 @@ app.UseHttpsRedirection();
 app.MapTimeEndpoints();
 
 app.Run();
+
+
+public partial class Program { }

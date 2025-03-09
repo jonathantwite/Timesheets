@@ -1,7 +1,6 @@
 ﻿using System.Security.Claims;
 using TimeAdder.Api.Contracts.Requests;
 using TimeAdder.Api.Contracts.Responses;
-using TimeAdder.Api.ModelConverters;
 using TimeAdder.Api.Services;
 
 namespace TimeAdder.Api.Endpoints;
