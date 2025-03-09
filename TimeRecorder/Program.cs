@@ -46,5 +46,5 @@ void ProcessMessageAsync(object? sender, BasicDeliverEventArgs args)
     Console.WriteLine("The message is: " + JsonSerializer.Serialize(recordTimeMessage));
 
     var service = host.Services.GetRequiredService<IProcessNewTimeEntryService>();
-    service.ProcessAsync(recordTimeMessage).RunSynchronously();
+    Task.Run(async () => await service.ProcessAsync(recordTimeMessage));
 }
