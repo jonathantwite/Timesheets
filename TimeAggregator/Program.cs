@@ -5,12 +5,19 @@ using RabbitMQ.Client;
 using System.Text;
 using Messaging.Shared.Constants;
 using TimeAdder.Api.Contracts.Messages;
+using AggregatedTimeDatabase;
+using Microsoft.EntityFrameworkCore;
+using TimeAggregator.Services;
 
 HostApplicationBuilder builder = Host.CreateApplicationBuilder();
 builder.AddRabbitMQClient(connectionName: "messaging");
+builder.AddSqlServerDbContext<AggregatedTimeContext>(connectionName: "sqlDbServer");
+builder.Services.AddScoped<ITimeAggregatorService, TimeAggregatorService>();
 
 using IHost host = builder.Build();
 
+var db = host.Services.GetRequiredService<AggregatedTimeContext>();
+db.Database.Migrate();
 
 var _rabbitConnection = host.Services.GetRequiredService<IConnection>();
 
@@ -24,7 +31,7 @@ channel.QueueBind(queue: queueName, exchange: MessagingConstants.NewTimeRecorded
 var consumer = new EventingBasicConsumer(channel);
 consumer.Received += ProcessMessageAsync;
 
-channel.BasicConsume(queue: queueName, autoAck: false, consumer: consumer);
+channel.BasicConsume(queue: queueName, autoAck: true, consumer: consumer);
 
 Console.ReadLine();
 
@@ -38,5 +45,5 @@ void ProcessMessageAsync(object? sender, BasicDeliverEventArgs args)
     Console.WriteLine("The message is: " + JsonSerializer.Serialize(recordTimeMessage));
 
     // here channel could also be accessed as ((AsyncEventingBasicConsumer)sender).Channel
-    channel.BasicAck(deliveryTag: args.DeliveryTag, multiple: false);
+    //channel.BasicAck(deliveryTag: args.DeliveryTag, multiple: false);
 }

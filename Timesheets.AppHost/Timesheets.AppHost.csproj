@@ -12,6 +12,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\NightlyCleanup\NightlyCleanup.csproj" />
     <ProjectReference Include="..\TimeAdder.Api\TimeAdder.Api.csproj" />
     <ProjectReference Include="..\TimeAggregator\TimeAggregator.csproj" />
     <ProjectReference Include="..\TimeRecorder\TimeRecorder.csproj" />
@@ -21,6 +22,7 @@
 
   <ItemGroup>
     <PackageReference Include="Aspire.Hosting.AppHost" Version="9.1.0" />
+    <PackageReference Include="Aspire.Hosting.Azure.Functions" Version="9.1.0-preview.1.25121.10" />
     <PackageReference Include="Aspire.Hosting.RabbitMQ" Version="9.1.0" />
     <PackageReference Include="Aspire.Hosting.Redis" Version="9.1.0" />
     <PackageReference Include="Aspire.Hosting.SqlServer" Version="9.1.0" />

@@ -6,6 +6,7 @@ var rabbitmq = builder.AddRabbitMQ("messaging").WithManagementPlugin();
 
 var dbServer = builder.AddSqlServer("sqlDbServer").WithLifetime(ContainerLifetime.Persistent);
 var rawTimeEntriesDb = dbServer.AddDatabase("RawTimeEntriesDb");
+var aggregatedTimeDb = dbServer.AddDatabase("AggregatedTimeDb");
 
 //var apiService = builder.AddProject<Projects.Timesheets_ApiService>("apiservice");
 //
@@ -30,5 +31,9 @@ builder.AddProject<Projects.TimeAggregator>("timeaggregator")
 builder.AddProject<Projects.TimeAdder_Api>("timeadder-api")
     .WithReference(rabbitmq)
     .WaitFor(rabbitmq);
+
+builder.AddAzureFunctionsProject<Projects.NightlyCleanup>("nightlycleanup")
+    .WithReference(dbServer)
+    .WaitFor(dbServer);
 
 builder.Build().Run();

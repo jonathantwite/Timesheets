@@ -8,13 +8,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Aspire.Microsoft.EntityFrameworkCore.SqlServer" Version="9.1.0" />
     <PackageReference Include="Aspire.RabbitMQ.Client" Version="9.1.0" />
-    <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.3" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AggregatedTimeDatabase\AggregatedTimeDatabase.csproj" />
     <ProjectReference Include="..\Messaging.Shared\Messaging.Shared.csproj" />
     <ProjectReference Include="..\TimeAdder.Api.Contracts\TimeAdder.Api.Contracts.csproj" />
+    <ProjectReference Include="..\TimeAggregator.Services\TimeAggregator.Services.csproj" />
   </ItemGroup>
 
   <ItemGroup>
