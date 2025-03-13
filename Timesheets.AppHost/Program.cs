@@ -17,6 +17,7 @@ var rawTimeEntriesDb = dbServer.AddDatabase("RawTimeEntriesDb");
 //    .WaitFor(apiService);
 
 builder.AddProject<Projects.TimeRecorder>("timerecorder")
+    .WithReplicas(2)
     .WithReference(rabbitmq)
     .WaitFor(rabbitmq)
     .WithReference(dbServer)

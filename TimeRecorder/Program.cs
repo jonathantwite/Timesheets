@@ -24,7 +24,7 @@ var _rabbitConnection = host.Services.GetRequiredService<IConnection>();
 var channel = _rabbitConnection.CreateModel();
 channel.ExchangeDeclare(exchange: MessagingConstants.NewTimeRecordedExchange, type: ExchangeType.Fanout);
 
-var queueName = channel.QueueDeclare().QueueName;
+var queueName = channel.QueueDeclare(queue: "TimeRecorderQueue", exclusive: false).QueueName;
 
 channel.QueueBind(queue: queueName, exchange: MessagingConstants.NewTimeRecordedExchange, routingKey: string.Empty);
 
@@ -46,5 +46,10 @@ void ProcessMessageAsync(object? sender, BasicDeliverEventArgs args)
     Console.WriteLine("The message is: " + JsonSerializer.Serialize(recordTimeMessage));
 
     var service = host.Services.GetRequiredService<IProcessNewTimeEntryService>();
-    Task.Run(async () => await service.ProcessAsync(recordTimeMessage));
+    Task.Run(async () => {
+        await service.ProcessAsync(recordTimeMessage);
+
+        // here channel could also be accessed as ((AsyncEventingBasicConsumer)sender).Channel
+        //channel.BasicAck(deliveryTag: args.DeliveryTag, multiple: false);
+    });
 }

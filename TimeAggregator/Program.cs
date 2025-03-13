@@ -24,7 +24,7 @@ channel.QueueBind(queue: queueName, exchange: MessagingConstants.NewTimeRecorded
 var consumer = new EventingBasicConsumer(channel);
 consumer.Received += ProcessMessageAsync;
 
-channel.BasicConsume(queue: queueName, autoAck: true, consumer: consumer);
+channel.BasicConsume(queue: queueName, autoAck: false, consumer: consumer);
 
 Console.ReadLine();
 
@@ -36,4 +36,7 @@ void ProcessMessageAsync(object? sender, BasicDeliverEventArgs args)
 
     var recordTimeMessage = JsonSerializer.Deserialize<RecordTimeMessage>(messagetext);
     Console.WriteLine("The message is: " + JsonSerializer.Serialize(recordTimeMessage));
+
+    // here channel could also be accessed as ((AsyncEventingBasicConsumer)sender).Channel
+    channel.BasicAck(deliveryTag: args.DeliveryTag, multiple: false);
 }

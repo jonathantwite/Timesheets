@@ -62,3 +62,10 @@ u2["Admin 👤"] --> aweb1
 |🏭|RabbitMQ AMQP messaging|
 |🛢|Database|
 |✉|Email server|
+
+## Current State
+
+* RabbitMQ configured
+* *TimeAdder.API* can receive an HTTP request and then sends a message to the RabbitMQ broker
+* The message is then received by both the *TimeAggregator* application and one of the replicas of the *TimeRecorder* applications
+* The *RawTimeEntries* database has been initialised
