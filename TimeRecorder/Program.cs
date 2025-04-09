@@ -1,5 +1,4 @@
 ﻿using Messaging.Shared.Constants;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using RabbitMQ.Client;
@@ -45,8 +44,8 @@ void ProcessMessageAsync(object? sender, BasicDeliverEventArgs args)
     var service = host.Services.GetRequiredService<IProcessNewTimeEntryService>();
     Task.Run(async () => {
         await service.ProcessAsync(recordTimeMessage);
-
-        // here channel could also be accessed as ((AsyncEventingBasicConsumer)sender).Channel
-        //channel.BasicAck(deliveryTag: args.DeliveryTag, multiple: false);
     });
+
+    // here channel could also be accessed as ((AsyncEventingBasicConsumer)sender).Channel
+    //channel.BasicAck(deliveryTag: args.DeliveryTag, multiple: false);
 }

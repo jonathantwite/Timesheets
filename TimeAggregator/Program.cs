@@ -6,12 +6,12 @@ using System.Text;
 using Messaging.Shared.Constants;
 using TimeAdder.Api.Contracts.Messages;
 using AggregatedTimeDatabase;
-using Microsoft.EntityFrameworkCore;
 using TimeAggregator.Services;
 
 HostApplicationBuilder builder = Host.CreateApplicationBuilder();
+//builder.AddRabbitMQClient(connectionName: "messaging", configureConnectionFactory: factory => { factory.DispatchConsumersAsync = true; });
 builder.AddRabbitMQClient(connectionName: "messaging");
-builder.AddSqlServerDbContext<AggregatedTimeContext>(connectionName: "sqlDbServer");
+builder.AddSqlServerDbContext<AggregatedTimeContext>(connectionName: "AggregatedTimeDb");
 builder.Services.AddScoped<ITimeAggregatorService, TimeAggregatorService>();
 
 using IHost host = builder.Build();
@@ -25,6 +25,7 @@ var queueName = channel.QueueDeclare().QueueName;
 
 channel.QueueBind(queue: queueName, exchange: MessagingConstants.NewTimeRecordedExchange, routingKey: string.Empty);
 
+//var consumer = new AsyncEventingBasicConsumer(channel);
 var consumer = new EventingBasicConsumer(channel);
 consumer.Received += ProcessMessageAsync;
 
@@ -40,6 +41,17 @@ void ProcessMessageAsync(object? sender, BasicDeliverEventArgs args)
 
     var recordTimeMessage = JsonSerializer.Deserialize<RecordTimeMessage>(messagetext);
     Console.WriteLine("The message is: " + JsonSerializer.Serialize(recordTimeMessage));
+
+    if(recordTimeMessage == null)
+    {
+        return;
+    }
+
+    var service = host.Services.GetRequiredService<ITimeAggregatorService>();
+    Task.Run(async () =>
+    {
+        await service.AddNewTimeAsync(recordTimeMessage.UserId, recordTimeMessage.JobId, recordTimeMessage.EndTime);
+    });
 
     // here channel could also be accessed as ((AsyncEventingBasicConsumer)sender).Channel
     //channel.BasicAck(deliveryTag: args.DeliveryTag, multiple: false);

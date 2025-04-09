@@ -27,8 +27,8 @@ builder.AddProject<Projects.TimeRecorder>("timerecorder")
 builder.AddProject<Projects.TimeAggregator>("timeaggregator")
     .WithReference(rabbitmq)
     .WaitFor(rabbitmq)
-    .WithReference(dbServer)
-    .WaitFor(dbServer);
+    .WithReference(aggregatedTimeDb)
+    .WaitFor(aggregatedTimeDb);
 
 builder.AddProject<Projects.TimeAdder_Api>("timeadder-api")
     .WithReference(rabbitmq)

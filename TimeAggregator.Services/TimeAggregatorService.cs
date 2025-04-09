@@ -8,7 +8,7 @@ public class TimeAggregatorService(AggregatedTimeContext dbContext) : ITimeAggre
 {
     private readonly AggregatedTimeContext _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
 
-    public async Task AddNewTime(int userId, int jobId, TimeSpan totalTime)
+    public async Task AddNewTimeAsync(int userId, int jobId, DateTime endTime)
     {
         var user = await _dbContext.Users.FirstOrDefaultAsync(u => u.Id == userId);
         var job = await _dbContext.Jobs.FirstOrDefaultAsync(j => j.Id == jobId);
@@ -28,7 +28,8 @@ public class TimeAggregatorService(AggregatedTimeContext dbContext) : ITimeAggre
             user = new User
             {
                 Id = userId,
-                Name = ""
+                Name = "",
+                LastEndTime = DateTime.Today.AddHours(8),
             };
             _dbContext.Users.Add(user);
         }
@@ -45,13 +46,18 @@ public class TimeAggregatorService(AggregatedTimeContext dbContext) : ITimeAggre
             job.JobTotals.Add(jt);
         }
 
-        jt.TotalTime.Add(totalTime);
+        var totalTime = endTime - user.LastEndTime;
+
+        jt.TotalTime = jt.TotalTime.Add(totalTime);
+        _dbContext.JobTotals.Add(jt);
+
+        user.LastEndTime = endTime;
 
         await _dbContext.SaveChangesAsync();
 
     }
 
-    public Task CleanUp()
+    public Task CleanUpAsync()
     {
         throw new NotImplementedException();
     }

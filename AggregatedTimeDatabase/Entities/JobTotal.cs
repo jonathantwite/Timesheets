@@ -2,11 +2,11 @@
 
 public class JobTotal
 {
-    public int JobId;
-    public Job Job = null!;
+    public int JobId { get; set; }
+    public Job Job { get; set; } = null!;
 
-    public int UserId;
-    public User User = null!;
+    public int UserId { get; set; }
+    public User User { get; set; } = null!;
 
-    public TimeSpan TotalTime;
+    public TimeSpan TotalTime { get; set; }
 }

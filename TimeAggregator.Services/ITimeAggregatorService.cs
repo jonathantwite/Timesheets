@@ -3,6 +3,6 @@ namespace TimeAggregator.Services;
 
 public interface ITimeAggregatorService
 {
-    Task AddNewTime(int userId, int jobId, TimeSpan totalTime);
-    Task CleanUp();
+    Task AddNewTimeAsync(int userId, int jobId, DateTime endTime);
+    Task CleanUpAsync();
 }
