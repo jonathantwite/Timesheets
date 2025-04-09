@@ -53,6 +53,6 @@ public class TimeAggregatorService(AggregatedTimeContext dbContext) : ITimeAggre
 
     public Task CleanUp()
     {
-
+        throw new NotImplementedException();
     }
 }

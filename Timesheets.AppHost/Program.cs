@@ -26,7 +26,9 @@ builder.AddProject<Projects.TimeRecorder>("timerecorder")
 
 builder.AddProject<Projects.TimeAggregator>("timeaggregator")
     .WithReference(rabbitmq)
-    .WaitFor(rabbitmq);
+    .WaitFor(rabbitmq)
+    .WithReference(dbServer)
+    .WaitFor(dbServer);
 
 builder.AddProject<Projects.TimeAdder_Api>("timeadder-api")
     .WithReference(rabbitmq)
@@ -35,5 +37,11 @@ builder.AddProject<Projects.TimeAdder_Api>("timeadder-api")
 builder.AddAzureFunctionsProject<Projects.NightlyCleanup>("nightlycleanup")
     .WithReference(dbServer)
     .WaitFor(dbServer);
+
+builder.AddProject<Projects.Database_MigrationService>("database-migrationservice")
+    .WithReference(rawTimeEntriesDb)
+    .WaitFor(rawTimeEntriesDb)
+    .WithReference(aggregatedTimeDb)
+    .WaitFor(aggregatedTimeDb);
 
 builder.Build().Run();

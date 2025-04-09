@@ -12,6 +12,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Database.MigrationService\Database.MigrationService.csproj" />
     <ProjectReference Include="..\NightlyCleanup\NightlyCleanup.csproj" />
     <ProjectReference Include="..\TimeAdder.Api\TimeAdder.Api.csproj" />
     <ProjectReference Include="..\TimeAggregator\TimeAggregator.csproj" />

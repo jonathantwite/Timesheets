@@ -16,9 +16,6 @@ builder.Services.AddScoped<ITimeAggregatorService, TimeAggregatorService>();
 
 using IHost host = builder.Build();
 
-var db = host.Services.GetRequiredService<AggregatedTimeContext>();
-db.Database.Migrate();
-
 var _rabbitConnection = host.Services.GetRequiredService<IConnection>();
 
 var channel = _rabbitConnection.CreateModel();

@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>dotnet-Database.MigrationService-ea85930d-43f2-4e38-b302-173722dc86b9</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Aspire.Microsoft.EntityFrameworkCore.SqlServer" Version="9.1.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AggregatedTimeDatabase\AggregatedTimeDatabase.csproj" />
+    <ProjectReference Include="..\RawTimeEntriesDatabase\RawTimeEntriesDatabase.csproj" />
+    <ProjectReference Include="..\Timesheets.ServiceDefaults\Timesheets.ServiceDefaults.csproj" />
+  </ItemGroup>
+</Project>

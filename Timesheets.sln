@@ -49,6 +49,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AggregatedTimeDatabase", "A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeAggregator.Services", "TimeAggregator.Services\TimeAggregator.Services.csproj", "{09106B9D-537D-454E-A738-978144D8E688}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Database.MigrationService", "Database.MigrationService\Database.MigrationService.csproj", "{670EF2D8-19AD-A570-F26A-64494D876AFB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -115,6 +117,10 @@ Global
 		{09106B9D-537D-454E-A738-978144D8E688}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{09106B9D-537D-454E-A738-978144D8E688}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{09106B9D-537D-454E-A738-978144D8E688}.Release|Any CPU.Build.0 = Release|Any CPU
+		{670EF2D8-19AD-A570-F26A-64494D876AFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{670EF2D8-19AD-A570-F26A-64494D876AFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{670EF2D8-19AD-A570-F26A-64494D876AFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{670EF2D8-19AD-A570-F26A-64494D876AFB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -130,6 +136,7 @@ Global
 		{70CA0D32-AC8D-A019-CEA9-327BF7E09465} = {AE1AA871-96C2-408D-A656-03515355E6CA}
 		{3F642424-9236-489A-A7C8-F7DB10616512} = {AE1AA871-96C2-408D-A656-03515355E6CA}
 		{09106B9D-537D-454E-A738-978144D8E688} = {AE1AA871-96C2-408D-A656-03515355E6CA}
+		{670EF2D8-19AD-A570-F26A-64494D876AFB} = {68370809-4D66-4A2F-8A2B-F4C8E4009B6A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BEF35EDE-1F1B-4955-979A-651F360D9657}
