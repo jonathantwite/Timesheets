@@ -6,4 +6,6 @@ public class Job
     public string? Description { get; set; }
 
     public ICollection<JobTotal> JobTotals = [];
+
+    public static Job Create(int jobId) => new() { Id = jobId, Description = "" };
 }

@@ -25,4 +25,5 @@ public class AggregatedTimeContext(DbContextOptions<AggregatedTimeContext> optio
     public DbSet<Job> Jobs { get; set; } = null!;
     public DbSet<User> Users { get; set; } = null!;
     public DbSet<JobTotal> JobTotals { get; set; } = null!;
+    public DbSet<Overtime> OvertimeRecords { get; set; } = null!;
 }

@@ -15,50 +15,39 @@ public class TimeAggregatorService(AggregatedTimeContext dbContext) : ITimeAggre
 
         if (job == null)
         {
-            job = new Job
-            {
-                Id = jobId,
-                Description = ""
-            };
+            job = Job.Create(jobId);
             _dbContext.Jobs.Add(job);
         }
 
         if (user == null)
         {
-            user = new User
-            {
-                Id = userId,
-                Name = "",
-                LastEndTime = DateTime.Today.AddHours(8),
-            };
+            user = User.Create(userId);
             _dbContext.Users.Add(user);
         }
 
         var jt = job.JobTotals.SingleOrDefault(jt => jt.UserId == userId);
         if (jt == null)
         {
-            jt = new JobTotal
-            {
-                JobId = jobId,
-                UserId = userId,
-                TotalTime = new TimeSpan(0, 0, 0)
-            };
+            jt = JobTotal.Create(jobId, userId);
             job.JobTotals.Add(jt);
         }
 
-        var totalTime = endTime - user.LastEndTime;
-
-        jt.TotalTime = jt.TotalTime.Add(totalTime);
+        jt.TotalTime = jt.TotalTime.Add(endTime - user.LastEndTime);
         _dbContext.JobTotals.Add(jt);
 
         user.LastEndTime = endTime;
 
         await _dbContext.SaveChangesAsync();
-
     }
 
-    public Task CleanUpAsync()
+    public async Task CleanUpAsync()
     {
-        throw new NotImplementedException();
+        //Update overtime table
+        _dbContext.OvertimeRecords.AddRange(Overtime.Create(_dbContext.Users.ToList()));
+
+        //Reset users last time
+        _dbContext.Users.ToList().ForEach(u => u.LastEndTime = DateTime.MinValue);
+
+        await _dbContext.SaveChangesAsync();
     }
 }

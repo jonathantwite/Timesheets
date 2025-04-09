@@ -21,6 +21,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AggregatedTimeDatabase\AggregatedTimeDatabase.csproj" />
+    <ProjectReference Include="..\TimeAggregator.Services\TimeAggregator.Services.csproj" />
     <ProjectReference Include="..\Timesheets.ServiceDefaults\Timesheets.ServiceDefaults.csproj" />
   </ItemGroup>
   <ItemGroup>

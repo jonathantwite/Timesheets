@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AggregatedTimeDatabase.Migrations
 {
     [DbContext(typeof(AggregatedTimeContext))]
-    [Migration("20250409095223_Initial")]
+    [Migration("20250409135803_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -57,6 +57,30 @@ namespace AggregatedTimeDatabase.Migrations
                     b.ToTable("JobTotals");
                 });
 
+            modelBuilder.Entity("AggregatedTimeDatabase.Entities.Overtime", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateOnly>("Date")
+                        .HasColumnType("date");
+
+                    b.Property<TimeSpan>("OvertimeTime")
+                        .HasColumnType("time");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("OvertimeRecords");
+                });
+
             modelBuilder.Entity("AggregatedTimeDatabase.Entities.User", b =>
                 {
                     b.Property<int>("Id")
@@ -89,6 +113,17 @@ namespace AggregatedTimeDatabase.Migrations
                         .IsRequired();
 
                     b.Navigation("Job");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("AggregatedTimeDatabase.Entities.Overtime", b =>
+                {
+                    b.HasOne("AggregatedTimeDatabase.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("User");
                 });

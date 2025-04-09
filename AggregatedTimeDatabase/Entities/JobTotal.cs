@@ -9,4 +9,6 @@ public class JobTotal
     public User User { get; set; } = null!;
 
     public TimeSpan TotalTime { get; set; }
+
+    public static JobTotal Create(int jobId, int userId) => new() { JobId = jobId, UserId = userId, TotalTime = new TimeSpan(0, 0, 0) };
 }
