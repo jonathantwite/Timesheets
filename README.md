@@ -8,6 +8,8 @@ graph TD
 
 subgraph ".NET Aspire"
 
+appdbm["Database.MigrationService #"]
+
 uweb1["TimeAdder.Angular 🌐"] <--> uapi1["TimeAdder.Api #"]
 uapi1 --> ur1["RabbitMQ 🏭"]
 
