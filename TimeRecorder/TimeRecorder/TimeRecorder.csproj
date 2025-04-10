@@ -22,10 +22,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Messaging.Shared\Messaging.Shared.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Messaging.Shared\Messaging.Shared.csproj" />
     <ProjectReference Include="..\RawTimeEntriesDatabase\RawTimeEntriesDatabase.csproj" />
-    <ProjectReference Include="..\TimeAdder.Api.Contracts\TimeAdder.Api.Contracts.csproj" />
-    <ProjectReference Include="..\Timesheets.Globals\Timesheets.Globals.csproj" />
+    <ProjectReference Include="..\..\TimeAdder\TimeAdder.Api.Contracts\TimeAdder.Api.Contracts.csproj" />
+    <ProjectReference Include="..\..\_Shared\Timesheets.Globals\Timesheets.Globals.csproj" />
   </ItemGroup>
 
   <ItemGroup>

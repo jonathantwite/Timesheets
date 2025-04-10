@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Worker">
+﻿<Project Sdk="Microsoft.NET.Sdk.Worker">
 
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
@@ -13,9 +13,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AggregatedTimeDatabase\AggregatedTimeDatabase.csproj" />
-    <ProjectReference Include="..\RawTimeEntriesDatabase\RawTimeEntriesDatabase.csproj" />
-    <ProjectReference Include="..\Timesheets.Globals\Timesheets.Globals.csproj" />
-    <ProjectReference Include="..\Timesheets.ServiceDefaults\Timesheets.ServiceDefaults.csproj" />
+    <ProjectReference Include="..\..\TimeAggregator\AggregatedTimeDatabase\AggregatedTimeDatabase.csproj" />
+    <ProjectReference Include="..\..\TimeRecorder\RawTimeEntriesDatabase\RawTimeEntriesDatabase.csproj" />
+    <ProjectReference Include="..\..\Timesheets.ServiceDefaults\Timesheets.ServiceDefaults.csproj" />
+    <ProjectReference Include="..\..\_Shared\Timesheets.Globals\Timesheets.Globals.csproj" />
   </ItemGroup>
 </Project>

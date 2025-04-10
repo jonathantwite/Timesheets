@@ -13,10 +13,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Messaging.Shared\Messaging.Shared.csproj" />
+    <ProjectReference Include="..\..\Timesheets.ServiceDefaults\Timesheets.ServiceDefaults.csproj" />
     <ProjectReference Include="..\TimeAdder.Api.Contracts\TimeAdder.Api.Contracts.csproj" />
-    <ProjectReference Include="..\Timesheets.Globals\Timesheets.Globals.csproj" />
-    <ProjectReference Include="..\Timesheets.ServiceDefaults\Timesheets.ServiceDefaults.csproj" />
+    <ProjectReference Include="..\..\_Shared\Timesheets.Globals\Timesheets.Globals.csproj" />
   </ItemGroup>
 
   <ItemGroup>

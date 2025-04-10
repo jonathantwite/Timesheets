@@ -12,13 +12,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Database.MigrationService\Database.MigrationService.csproj" />
-    <ProjectReference Include="..\NightlyCleanup\NightlyCleanup.csproj" />
-    <ProjectReference Include="..\TimeAdder.Api\TimeAdder.Api.csproj" />
-    <ProjectReference Include="..\TimeAggregator\TimeAggregator.csproj" />
-    <ProjectReference Include="..\TimeRecorder\TimeRecorder.csproj" />
+    <ProjectReference Include="..\Infrastructure\Database.MigrationService\Database.MigrationService.csproj" />
+    <ProjectReference Include="..\TimeAdder\TimeAdder.Api\TimeAdder.Api.csproj" />
+    <ProjectReference Include="..\TimeAggregator\NightlyCleanup\NightlyCleanup.csproj" />
+    <ProjectReference Include="..\TimeAggregator\TimeAggregator\TimeAggregator.csproj" />
+    <ProjectReference Include="..\TimeRecorder\TimeRecorder\TimeRecorder.csproj" />
     <ProjectReference Include="..\Timesheets.ApiService\Timesheets.ApiService.csproj" />
-    <ProjectReference Include="..\Timesheets.Globals\Timesheets.Globals.csproj" />
     <ProjectReference Include="..\Timesheets.Web\Timesheets.Web.csproj" />
   </ItemGroup>
 

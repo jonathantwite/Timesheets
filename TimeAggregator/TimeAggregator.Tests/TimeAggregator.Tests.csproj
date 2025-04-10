@@ -17,8 +17,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AggregatedTimeDatabase\AggregatedTimeDatabase.csproj" />
-    <ProjectReference Include="..\TestingUtilities\TestingUtilities.csproj" />
     <ProjectReference Include="..\TimeAggregator.Services\TimeAggregator.Services.csproj" />
+    <ProjectReference Include="..\..\_Shared\TestingUtilities\TestingUtilities.csproj" />
   </ItemGroup>
 
   <ItemGroup>
