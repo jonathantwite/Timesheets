@@ -4,7 +4,9 @@ var cache = builder.AddRedis("cache");
 
 var rabbitmq = builder.AddRabbitMQ("messaging").WithManagementPlugin();
 
-var dbServer = builder.AddSqlServer("sqlDbServer").WithLifetime(ContainerLifetime.Persistent);
+var dbServer = builder.AddSqlServer("sqlDbServer", port: 43210)
+    .WithLifetime(ContainerLifetime.Persistent);
+
 var rawTimeEntriesDb = dbServer.AddDatabase("RawTimeEntriesDb");
 var aggregatedTimeDb = dbServer.AddDatabase("AggregatedTimeDb");
 
@@ -21,8 +23,8 @@ builder.AddProject<Projects.TimeRecorder>("timerecorder")
     .WithReplicas(2)
     .WithReference(rabbitmq)
     .WaitFor(rabbitmq)
-    .WithReference(dbServer)
-    .WaitFor(dbServer);
+    .WithReference(rawTimeEntriesDb)
+    .WaitFor(rawTimeEntriesDb);
 
 builder.AddProject<Projects.TimeAggregator>("timeaggregator")
     .WithReference(rabbitmq)
@@ -35,8 +37,8 @@ builder.AddProject<Projects.TimeAdder_Api>("timeadder-api")
     .WaitFor(rabbitmq);
 
 builder.AddAzureFunctionsProject<Projects.NightlyCleanup>("nightlycleanup")
-    .WithReference(dbServer)
-    .WaitFor(dbServer);
+    .WithReference(aggregatedTimeDb)
+    .WaitFor(aggregatedTimeDb);
 
 builder.AddProject<Projects.Database_MigrationService>("database-migrationservice")
     .WithReference(rawTimeEntriesDb)

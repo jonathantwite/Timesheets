@@ -7,11 +7,12 @@ using Messaging.Shared.Constants;
 using TimeAdder.Api.Contracts.Messages;
 using AggregatedTimeDatabase;
 using TimeAggregator.Services;
+using Timesheets.Globals;
 
 HostApplicationBuilder builder = Host.CreateApplicationBuilder();
 //builder.AddRabbitMQClient(connectionName: "messaging", configureConnectionFactory: factory => { factory.DispatchConsumersAsync = true; });
-builder.AddRabbitMQClient(connectionName: "messaging");
-builder.AddSqlServerDbContext<AggregatedTimeContext>(connectionName: "AggregatedTimeDb");
+builder.AddRabbitMQClient(connectionName: ServiceNames.RabbitMQ);
+builder.AddSqlServerDbContext<AggregatedTimeContext>(connectionName: ServiceNames.AggregatedTimeDb);
 builder.Services.AddScoped<ITimeAggregatorService, TimeAggregatorService>();
 
 using IHost host = builder.Build();

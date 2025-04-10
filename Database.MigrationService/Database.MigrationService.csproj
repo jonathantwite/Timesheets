@@ -15,6 +15,7 @@
   <ItemGroup>
     <ProjectReference Include="..\AggregatedTimeDatabase\AggregatedTimeDatabase.csproj" />
     <ProjectReference Include="..\RawTimeEntriesDatabase\RawTimeEntriesDatabase.csproj" />
+    <ProjectReference Include="..\Timesheets.Globals\Timesheets.Globals.csproj" />
     <ProjectReference Include="..\Timesheets.ServiceDefaults\Timesheets.ServiceDefaults.csproj" />
   </ItemGroup>
 </Project>

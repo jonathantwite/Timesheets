@@ -18,6 +18,7 @@
     <ProjectReference Include="..\TimeAggregator\TimeAggregator.csproj" />
     <ProjectReference Include="..\TimeRecorder\TimeRecorder.csproj" />
     <ProjectReference Include="..\Timesheets.ApiService\Timesheets.ApiService.csproj" />
+    <ProjectReference Include="..\Timesheets.Globals\Timesheets.Globals.csproj" />
     <ProjectReference Include="..\Timesheets.Web\Timesheets.Web.csproj" />
   </ItemGroup>
 

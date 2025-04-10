@@ -7,10 +7,11 @@ using RawTimeEntriesDatabase;
 using System.Text;
 using TimeAdder.Api.Contracts.Messages;
 using TimeRecorder.Services;
+using Timesheets.Globals;
 
 HostApplicationBuilder builder = Host.CreateApplicationBuilder();
-builder.AddRabbitMQClient(connectionName: "messaging");
-builder.AddSqlServerDbContext<RawTimeEntriesContext>(connectionName: "sqlDbServer");
+builder.AddRabbitMQClient(connectionName: ServiceNames.RabbitMQ);
+builder.AddSqlServerDbContext<RawTimeEntriesContext>(connectionName: ServiceNames.RawTimeEntriesDb);
 builder.Services.AddScoped<IProcessNewTimeEntryService, ProcessNewTimeEntryService>();
 
 using IHost host = builder.Build();

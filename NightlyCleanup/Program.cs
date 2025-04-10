@@ -20,10 +20,13 @@ using Microsoft.Azure.Functions.Worker.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using TimeAggregator.Services;
+using Timesheets.Globals;
 
 var builder = FunctionsApplication.CreateBuilder(args);
 
-builder.Services.AddDbContext<AggregatedTimeContext>();
+builder.AddSqlServerDbContext<AggregatedTimeContext>(connectionName: ServiceNames.AggregatedTimeDb);
+builder.Services.AddScoped<ITimeAggregatorService, TimeAggregatorService>();
 
 builder.Services
     .AddApplicationInsightsTelemetryWorkerService()

@@ -25,7 +25,7 @@ public class TimeAggregatorService(AggregatedTimeContext dbContext) : ITimeAggre
             _dbContext.Users.Add(user);
         }
 
-        var jt = job.JobTotals.SingleOrDefault(jt => jt.UserId == userId);
+        var jt = job.JobTotals.SingleOrDefault(jt => jt.UserId == userId && jt.JobId == jobId);
         if (jt == null)
         {
             jt = JobTotal.Create(jobId, userId);
