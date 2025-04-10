@@ -98,13 +98,13 @@ namespace AggregatedTimeDatabase.Migrations
             modelBuilder.Entity("AggregatedTimeDatabase.Entities.JobTotal", b =>
                 {
                     b.HasOne("AggregatedTimeDatabase.Entities.Job", "Job")
-                        .WithMany()
+                        .WithMany("JobTotals")
                         .HasForeignKey("JobId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("AggregatedTimeDatabase.Entities.User", "User")
-                        .WithMany()
+                        .WithMany("JobTotals")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -117,12 +117,24 @@ namespace AggregatedTimeDatabase.Migrations
             modelBuilder.Entity("AggregatedTimeDatabase.Entities.Overtime", b =>
                 {
                     b.HasOne("AggregatedTimeDatabase.Entities.User", "User")
-                        .WithMany()
+                        .WithMany("OvertimeRecords")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("AggregatedTimeDatabase.Entities.Job", b =>
+                {
+                    b.Navigation("JobTotals");
+                });
+
+            modelBuilder.Entity("AggregatedTimeDatabase.Entities.User", b =>
+                {
+                    b.Navigation("JobTotals");
+
+                    b.Navigation("OvertimeRecords");
                 });
 #pragma warning restore 612, 618
         }

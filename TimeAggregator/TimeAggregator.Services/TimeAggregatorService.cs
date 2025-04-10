@@ -33,8 +33,6 @@ public class TimeAggregatorService(AggregatedTimeContext dbContext) : ITimeAggre
         }
 
         jt.TotalTime = jt.TotalTime.Add(endTime - user.LastEndTime);
-        _dbContext.JobTotals.Add(jt);
-
         user.LastEndTime = endTime;
 
         await _dbContext.SaveChangesAsync();

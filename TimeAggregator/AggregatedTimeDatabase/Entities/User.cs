@@ -7,10 +7,10 @@ public class User
 
     public DateTime LastEndTime { get; set; }
 
-    public ICollection<JobTotal> JobTotals = [];
-    public ICollection<Overtime> OvertimeRecords = [];
+    public ICollection<JobTotal> JobTotals { get; set; } = [];
+    public ICollection<Overtime> OvertimeRecords { get; set; } = [];
 
     public static User Create(int userId) => new() { Id = userId, Name = "", LastEndTime = DateTime.Today.AddHours(DefaultDayStartTimeHours) };
 
-    public static int DefaultDayStartTimeHours = 9;
+    public const int DefaultDayStartTimeHours = 9;
 }
