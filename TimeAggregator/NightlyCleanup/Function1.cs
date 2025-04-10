@@ -1,6 +1,7 @@
 using System;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Extensions.Logging;
+using Nito.AsyncEx;
 using TimeAggregator.Services;
 
 namespace NightlyCleanup
@@ -19,7 +20,8 @@ namespace NightlyCleanup
         [Function("Function1")]
         public void Run([TimerTrigger("0 */1 * * * *")] TimerInfo myTimer)
         {
-            Task.Run(async () => await _timeAggregatorService.CleanUpAsync());
+            AsyncContext.Run(_timeAggregatorService.CleanUpAsync);
+            //Task.Run(async () => await _timeAggregatorService.CleanUpAsync());
             _logger.LogInformation($"C# Timer trigger function executed at: {DateTime.Now}");
 
             if (myTimer.ScheduleStatus is not null)

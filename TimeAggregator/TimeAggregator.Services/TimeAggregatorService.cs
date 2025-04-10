@@ -11,7 +11,7 @@ public class TimeAggregatorService(AggregatedTimeContext dbContext) : ITimeAggre
     public async Task AddNewTimeAsync(int userId, int jobId, DateTime endTime)
     {
         var user = await _dbContext.Users.FirstOrDefaultAsync(u => u.Id == userId);
-        var job = await _dbContext.Jobs.FirstOrDefaultAsync(j => j.Id == jobId);
+        var job = await _dbContext.Jobs.Include(j => j.JobTotals).FirstOrDefaultAsync(j => j.Id == jobId);
 
         if (job == null)
         {
@@ -25,7 +25,7 @@ public class TimeAggregatorService(AggregatedTimeContext dbContext) : ITimeAggre
             _dbContext.Users.Add(user);
         }
 
-        var jt = job.JobTotals.SingleOrDefault(jt => jt.UserId == userId && jt.JobId == jobId);
+        var jt = job.JobTotals.SingleOrDefault(jt => jt.UserId == userId);
         if (jt == null)
         {
             jt = JobTotal.Create(jobId, userId);
