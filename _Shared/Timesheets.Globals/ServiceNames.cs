@@ -6,4 +6,6 @@ public static class ServiceNames
     public const string AggregatedTimeDb = "AggregatedTimeDb";
     public const string Cache = "cache";
     public const string RabbitMQ = "messaging";
+    public const string TimeAdderApi = "timeadder-api";
+    public const string TimeAggregator = "timeaggregator";
 }

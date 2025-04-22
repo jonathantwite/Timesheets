@@ -1,3 +1,5 @@
+using Timesheets.Globals;
+
 namespace Timesheets.Tests;
 
 public class WebTests
@@ -17,9 +19,9 @@ public class WebTests
         await app.StartAsync();
 
         // Act
-        var httpClient = app.CreateHttpClient("webfrontend");
-        await resourceNotificationService.WaitForResourceAsync("webfrontend", KnownResourceStates.Running).WaitAsync(TimeSpan.FromSeconds(30));
-        var response = await httpClient.GetAsync("/");
+        var httpClient = app.CreateHttpClient(ServiceNames.TimeAdderApi);
+        await resourceNotificationService.WaitForResourceAsync(ServiceNames.TimeAdderApi, KnownResourceStates.Running).WaitAsync(TimeSpan.FromSeconds(30));
+        var response = await httpClient.GetAsync("Time/");
 
         // Assert
         Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK));

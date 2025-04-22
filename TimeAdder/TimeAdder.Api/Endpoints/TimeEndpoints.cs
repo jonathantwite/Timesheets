@@ -18,7 +18,7 @@ public static class TimeEndpoints
 
         group.MapPost("", (TimeRequest timeRequest, ITimeRequestService requestService, ClaimsPrincipal user) =>
         {
-            requestService.ProcessNewTimeRequest(3, timeRequest);
+            requestService.ProcessNewTimeRequest(1, timeRequest);
         });
     }
 }
