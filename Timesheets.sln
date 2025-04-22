@@ -20,14 +20,26 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Solution Items", "_Solutio
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TimeAdder", "TimeAdder", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+	ProjectSection(SolutionItems) = preProject
+		TimeAdder\README.md = TimeAdder\README.md
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{68370809-4D66-4A2F-8A2B-F4C8E4009B6A}"
+	ProjectSection(SolutionItems) = preProject
+		Infrastructure\README.md = Infrastructure\README.md
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AdminViewer", "AdminViewer", "{43352B20-A4D4-4A99-BFC0-619BAF4759A6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TimeRecorder", "TimeRecorder", "{B1A82F7A-7DF4-423F-89CB-5001EA213EBC}"
+	ProjectSection(SolutionItems) = preProject
+		TimeRecorder\README.md = TimeRecorder\README.md
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TimeAggregator", "TimeAggregator", "{AE1AA871-96C2-408D-A656-03515355E6CA}"
+	ProjectSection(SolutionItems) = preProject
+		TimeAggregator\README.md = TimeAggregator\README.md
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Shared", "_Shared", "{15BFA385-0CEE-4F6D-949E-BD4D23FAAE66}"
 EndProject
