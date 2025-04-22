@@ -21,7 +21,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\TimeAggregator\AggregatedTimeDatabase\AggregatedTimeDatabase.csproj" />
     <ProjectReference Include="..\Timesheets.AppHost\Timesheets.AppHost.csproj" />
+    <ProjectReference Include="..\_Shared\Timesheets.Globals\Timesheets.Globals.csproj" />
   </ItemGroup>
 
   <ItemGroup>
