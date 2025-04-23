@@ -46,4 +46,8 @@ builder.AddProject<Projects.Database_MigrationService>("database-migrationservic
     .WithReference(aggregatedTimeDb)
     .WaitFor(aggregatedTimeDb);
 
+builder.AddProject<Projects.AdminViewer_Api>("adminviewer-api")
+    .WithReference(aggregatedTimeDb)
+    .WaitFor(aggregatedTimeDb);
+
 builder.Build().Run();

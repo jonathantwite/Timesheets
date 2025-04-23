@@ -13,4 +13,12 @@ public class User
     public static User Create(int userId) => new() { Id = userId, Name = "", LastEndTime = DateTime.Today.AddHours(DefaultDayStartTimeHours) };
 
     public const int DefaultDayStartTimeHours = 9;
+
+    public TimeSpan TotalTimeRecorded() => TimeSpan.FromMinutes(JobTotals.Select(jt => jt.TotalTime).Sum(ts => ts.TotalMinutes));
+
+    public IEnumerable<string> JobDescriptions() => JobTotals
+        .Select(jt => jt.Job.Description)
+        .Where(j => !string.IsNullOrEmpty(j))
+        .Distinct()
+        .ToList();
 }
