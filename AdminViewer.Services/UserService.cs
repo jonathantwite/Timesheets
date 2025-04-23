@@ -1,4 +1,5 @@
-﻿using AdminViewer.Services.DTOs;
+﻿using AdminViewer.Models.Requests;
+using AdminViewer.Models.Responses;
 using AggregatedTimeDatabase;
 using AggregatedTimeDatabase.Entities;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,8 @@ public class UserService(AggregatedTimeContext dbContext) : IUserService
 
     public async Task<IEnumerable<MissingUser>> GetMissingUsersAsync() =>
         await _dbContext.Users
+            .Include(u => u.JobTotals)
+            .ThenInclude(jt => jt.Job)
             .Where(u => string.IsNullOrEmpty(u.Name))
             .Select(u => new MissingUser(
                 u.Id,
@@ -19,17 +22,17 @@ public class UserService(AggregatedTimeContext dbContext) : IUserService
             .AsNoTracking()
             .ToListAsync();
 
-    public async Task AddUser(int userId, string name)
+    public async Task AddUser(AddUserRequest userRequest)
     {
-        var user = await _dbContext.Users.FirstOrDefaultAsync(u => u.Id == userId);
+        var user = await _dbContext.Users.FirstOrDefaultAsync(u => u.Id == userRequest.UserId);
 
         if (user == null)
         {
-            user = User.Create(userId);
+            user = User.Create(userRequest.UserId);
             _dbContext.Users.Add(user);
         }
 
-        user.Name = name;
+        user.Name = userRequest.Name;
         await _dbContext.SaveChangesAsync();
     }
 }

@@ -1,8 +1,9 @@
-﻿using AdminViewer.Services.DTOs;
+﻿using AdminViewer.Models.Requests;
+using AdminViewer.Models.Responses;
 
 namespace AdminViewer.Services;
 public interface IUserService
 {
-    Task AddUser(int userId, string name);
+    Task AddUser(AddUserRequest userRequest);
     Task<IEnumerable<MissingUser>> GetMissingUsersAsync();
 }
