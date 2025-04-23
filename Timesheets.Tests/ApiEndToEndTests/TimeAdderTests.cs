@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Net.Http.Json;
 using Timesheets.Globals;
 
-namespace Timesheets.Tests.IntegrationTests;
+namespace Timesheets.Tests.ApiEndToEndTests;
 public class TimeAdderTests
 {
     [Test]
@@ -35,7 +35,6 @@ public class TimeAdderTests
 
         // Act
         var response = await httpClient.PostAsJsonAsync("/Time", new { JobId = 1, Date = DateOnly.FromDateTime(DateTime.Today), Time = new TimeOnly(User.DefaultDayStartTimeHours + 5, 0) });
-        await Task.Delay(5000);
 
         var actual = await context.JobTotals
             .Where(jt => jt.UserId == 1 && jt.JobId == 1)

@@ -19,14 +19,14 @@ var aggregatedTimeDb = dbServer.AddDatabase("AggregatedTimeDb");
 //    .WithReference(apiService)
 //    .WaitFor(apiService);
 
-builder.AddProject<Projects.TimeRecorder>("timerecorder")
+var timerecorder = builder.AddProject<Projects.TimeRecorder>("timerecorder")
     .WithReplicas(2)
     .WithReference(rabbitmq)
     .WaitFor(rabbitmq)
     .WithReference(rawTimeEntriesDb)
     .WaitFor(rawTimeEntriesDb);
 
-builder.AddProject<Projects.TimeAggregator>("timeaggregator")
+var timeaggregator = builder.AddProject<Projects.TimeAggregator>("timeaggregator")
     .WithReference(rabbitmq)
     .WaitFor(rabbitmq)
     .WithReference(aggregatedTimeDb)
@@ -34,7 +34,9 @@ builder.AddProject<Projects.TimeAggregator>("timeaggregator")
 
 builder.AddProject<Projects.TimeAdder_Api>("timeadder-api")
     .WithReference(rabbitmq)
-    .WaitFor(rabbitmq);
+    .WaitFor(rabbitmq)
+    .WaitFor(timeaggregator)
+    .WaitFor(timerecorder);
 
 builder.AddAzureFunctionsProject<Projects.NightlyCleanup>("nightlycleanup")
     .WithReference(aggregatedTimeDb)
