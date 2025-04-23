@@ -15,10 +15,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Timesheets.ServiceDefaults\Timesheets.ServiceDefaults.csproj" />
+    <ProjectReference Include="..\..\_Shared\Timesheets.Globals\Timesheets.Globals.csproj" />
+    <ProjectReference Include="..\AdminViewer.Models\AdminViewer.Models.csproj" />
     <ProjectReference Include="..\AdminViewer.Services\AdminViewer.Services.csproj" />
-    <ProjectReference Include="..\AdminViewer\AdminViewer.Models\AdminViewer.Models.csproj" />
-    <ProjectReference Include="..\Timesheets.ServiceDefaults\Timesheets.ServiceDefaults.csproj" />
-    <ProjectReference Include="..\_Shared\Timesheets.Globals\Timesheets.Globals.csproj" />
   </ItemGroup>
 
 </Project>

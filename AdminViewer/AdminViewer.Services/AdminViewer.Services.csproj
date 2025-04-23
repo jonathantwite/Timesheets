@@ -7,8 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AdminViewer\AdminViewer.Models\AdminViewer.Models.csproj" />
-    <ProjectReference Include="..\TimeAggregator\AggregatedTimeDatabase\AggregatedTimeDatabase.csproj" />
+    <ProjectReference Include="..\..\TimeAggregator\AggregatedTimeDatabase\AggregatedTimeDatabase.csproj" />
+    <ProjectReference Include="..\AdminViewer.Models\AdminViewer.Models.csproj" />
   </ItemGroup>
 
 </Project>
