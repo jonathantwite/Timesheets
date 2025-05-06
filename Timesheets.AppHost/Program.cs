@@ -48,10 +48,15 @@ builder.AddProject<Projects.Database_MigrationService>("database-migrationservic
     .WithReference(aggregatedTimeDb)
     .WaitFor(aggregatedTimeDb);
 
-builder.AddProject<Projects.AdminViewer_Api>("adminviewer-api")
+var adminViewerApi = builder.AddProject<Projects.AdminViewer_Api>("adminviewer-api")
     .WithReference(aggregatedTimeDb)
     .WaitFor(aggregatedTimeDb)
     .WithReference(cache)
     .WaitFor(cache);
+
+builder.AddNpmApp("adminviewer-vue", "../AdminViewer/AdminViewer.Vue", "dev")
+    .WithReference(adminViewerApi)
+    .WithHttpEndpoint(env: "PORT")
+    .WithExternalHttpEndpoints();
 
 builder.Build().Run();
