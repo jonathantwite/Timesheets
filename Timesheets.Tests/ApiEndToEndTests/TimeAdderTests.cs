@@ -36,6 +36,8 @@ public class TimeAdderTests
         // Act
         var response = await httpClient.PostAsJsonAsync("/Time", new { JobId = 1, Date = DateOnly.FromDateTime(DateTime.Today), Time = new TimeOnly(User.DefaultDayStartTimeHours + 5, 0) });
 
+        await Task.Delay(2000);
+
         var actual = await context.JobTotals
             .Where(jt => jt.UserId == 1 && jt.JobId == 1)
             .ToListAsync();
