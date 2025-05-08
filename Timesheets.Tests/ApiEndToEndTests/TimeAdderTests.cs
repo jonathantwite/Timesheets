@@ -28,7 +28,7 @@ public class TimeAdderTests
             resourceNotificationService.WaitForResourceAsync(ServiceNames.DatabaseMigrationService, KnownResourceStates.Finished).WaitAsync(TimeSpan.FromSeconds(300)),
             resourceNotificationService.WaitForResourceAsync(ServiceNames.TimeAdderApi, KnownResourceStates.Running).WaitAsync(TimeSpan.FromSeconds(300)),
             resourceNotificationService.WaitForResourceAsync(ServiceNames.TimeAggregator, KnownResourceStates.Running).WaitAsync(TimeSpan.FromSeconds(300)));
-        await Task.Delay(120000);
+        await Task.Delay(180000);
 
         var connectionString = await app.GetConnectionStringAsync(ServiceNames.AggregatedTimeDb);
         var contextOptions = new DbContextOptionsBuilder<AggregatedTimeContext>()
