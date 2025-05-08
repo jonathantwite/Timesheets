@@ -21,10 +21,13 @@ public class TimeAdderTests
         await app.StartAsync();
 
         var httpClient = app.CreateHttpClient(ServiceNames.TimeAdderApi);
-        await resourceNotificationService.WaitForResourceAsync(ServiceNames.TimeAdderApi, KnownResourceStates.Running).WaitAsync(TimeSpan.FromSeconds(300));
-        await resourceNotificationService.WaitForResourceAsync(ServiceNames.AggregatedTimeDb, KnownResourceStates.Running).WaitAsync(TimeSpan.FromSeconds(300));
         await resourceNotificationService.WaitForResourceAsync(ServiceNames.RabbitMQ, KnownResourceStates.Running).WaitAsync(TimeSpan.FromSeconds(300));
+        await resourceNotificationService.WaitForResourceAsync(ServiceNames.SqlDbServer, KnownResourceStates.Running).WaitAsync(TimeSpan.FromSeconds(300));
+        await resourceNotificationService.WaitForResourceAsync(ServiceNames.AggregatedTimeDb, KnownResourceStates.Running).WaitAsync(TimeSpan.FromSeconds(300));
+        await resourceNotificationService.WaitForResourceAsync(ServiceNames.DatabaseMigrationService, KnownResourceStates.Running).WaitAsync(TimeSpan.FromSeconds(300));
+        await resourceNotificationService.WaitForResourceAsync(ServiceNames.TimeAdderApi, KnownResourceStates.Running).WaitAsync(TimeSpan.FromSeconds(300));
         await resourceNotificationService.WaitForResourceAsync(ServiceNames.TimeAggregator, KnownResourceStates.Running).WaitAsync(TimeSpan.FromSeconds(300));
+        await Task.Delay(2000);
 
         var connectionString = await app.GetConnectionStringAsync(ServiceNames.AggregatedTimeDb);
         var contextOptions = new DbContextOptionsBuilder<AggregatedTimeContext>()
