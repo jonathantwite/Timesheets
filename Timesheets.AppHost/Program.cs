@@ -19,18 +19,26 @@ var aggregatedTimeDb = dbServer.AddDatabase("AggregatedTimeDb");
 //    .WithReference(apiService)
 //    .WaitFor(apiService);
 
+var migrationService = builder.AddProject<Projects.Database_MigrationService>("database-migrationservice")
+    .WithReference(rawTimeEntriesDb)
+    .WaitFor(rawTimeEntriesDb)
+    .WithReference(aggregatedTimeDb)
+    .WaitFor(aggregatedTimeDb);
+
 var timerecorder = builder.AddProject<Projects.TimeRecorder>("timerecorder")
     .WithReplicas(2)
     .WithReference(rabbitmq)
     .WaitFor(rabbitmq)
     .WithReference(rawTimeEntriesDb)
-    .WaitFor(rawTimeEntriesDb);
+    .WaitFor(rawTimeEntriesDb)
+    .WaitForCompletion(migrationService);
 
 var timeaggregator = builder.AddProject<Projects.TimeAggregator>("timeaggregator")
     .WithReference(rabbitmq)
     .WaitFor(rabbitmq)
     .WithReference(aggregatedTimeDb)
-    .WaitFor(aggregatedTimeDb);
+    .WaitFor(aggregatedTimeDb)
+    .WaitForCompletion(migrationService);
 
 builder.AddProject<Projects.TimeAdder_Api>("timeadder-api")
     .WithReference(rabbitmq)
@@ -40,22 +48,19 @@ builder.AddProject<Projects.TimeAdder_Api>("timeadder-api")
 
 builder.AddAzureFunctionsProject<Projects.NightlyCleanup>("nightlycleanup")
     .WithReference(aggregatedTimeDb)
-    .WaitFor(aggregatedTimeDb);
-
-builder.AddProject<Projects.Database_MigrationService>("database-migrationservice")
-    .WithReference(rawTimeEntriesDb)
-    .WaitFor(rawTimeEntriesDb)
-    .WithReference(aggregatedTimeDb)
-    .WaitFor(aggregatedTimeDb);
+    .WaitFor(aggregatedTimeDb)
+    .WaitForCompletion(migrationService);
 
 var adminViewerApi = builder.AddProject<Projects.AdminViewer_Api>("adminviewer-api")
     .WithReference(aggregatedTimeDb)
     .WaitFor(aggregatedTimeDb)
+    .WaitForCompletion(migrationService)
     .WithReference(cache)
     .WaitFor(cache);
 
 builder.AddNpmApp("adminviewer-vue", "../AdminViewer/AdminViewer.Vue", "dev")
     .WithReference(adminViewerApi)
+    .WaitFor(adminViewerApi)
     .WithHttpEndpoint(env: "PORT")
     .WithExternalHttpEndpoints();
 
