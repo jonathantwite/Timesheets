@@ -24,7 +24,7 @@ public class TimeAdderTests
         await resourceNotificationService.WaitForResourceAsync(ServiceNames.RabbitMQ, KnownResourceStates.Running).WaitAsync(TimeSpan.FromSeconds(300));
         await resourceNotificationService.WaitForResourceAsync(ServiceNames.SqlDbServer, KnownResourceStates.Running).WaitAsync(TimeSpan.FromSeconds(300));
         await resourceNotificationService.WaitForResourceAsync(ServiceNames.AggregatedTimeDb, KnownResourceStates.Running).WaitAsync(TimeSpan.FromSeconds(300));
-        await resourceNotificationService.WaitForResourceAsync(ServiceNames.DatabaseMigrationService, KnownResourceStates.Running).WaitAsync(TimeSpan.FromSeconds(300));
+        await resourceNotificationService.WaitForResourceAsync(ServiceNames.DatabaseMigrationService, KnownResourceStates.Finished).WaitAsync(TimeSpan.FromSeconds(300));
         await resourceNotificationService.WaitForResourceAsync(ServiceNames.TimeAdderApi, KnownResourceStates.Running).WaitAsync(TimeSpan.FromSeconds(300));
         await resourceNotificationService.WaitForResourceAsync(ServiceNames.TimeAggregator, KnownResourceStates.Running).WaitAsync(TimeSpan.FromSeconds(300));
         await Task.Delay(2000);

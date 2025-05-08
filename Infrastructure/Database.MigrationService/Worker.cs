@@ -43,6 +43,10 @@ public class Worker(IServiceProvider serviceProvider, IHostApplicationLifetime h
                 await Task.Delay(1000, cancellationToken);
             }
         }
+        finally
+        {
+            _hostApplicationLifetime.StopApplication();
+        }
     }
 
     private static async Task MigrateDatabaseAsync<T>(T dbContext, CancellationToken cancellationToken) where T : DbContext
